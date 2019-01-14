@@ -40,7 +40,7 @@ syn keyword gasDirective	.vtable_entry .vtable_inherit .warning .weak .weakref
 
 
 syn keyword gasDirectiveStore	.byte .hword .word .int .long .double .short .float .quad .octa
-syn keyword gasDirectiveStore	.string .string8 .string16 .ascii .asciz .comm .space
+syn keyword gasDirectiveStore	.string .string8 .string16 .ascii .asciz .comm .space .zero
 
 syn keyword gasDirectiveMacro	.altmacro .macro .noaltmacro .endm .endmacro .func .endfunc
 
