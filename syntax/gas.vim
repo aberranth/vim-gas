@@ -103,6 +103,9 @@ syn keyword gasDirectiveMacroARM	.dn .dq .req .unreq .tlsdescseq
 
 " finally: Opcodes
 "
+"-- Section: PDP-11
+syn keyword gasOpcode_PDP11		mov movb
+syn keyword gasOpcode_PDP11		cmp cmpb tst tstb
 "-- Section: Willamette MMX instructions (SSE2 SIMD Integer Instructions)
 syn keyword gasOpcode_SSE2		movd movdb movdw movdl movdq
 syn keyword gasOpcode_SSE2		movdqa
@@ -1996,6 +1999,7 @@ func! s:MapOpcode (group, cpu, ext)
 	exe 'hi link '.a:group.' '.himap
 endf
 
+call <SID>MapOpcode('gasOpcode_PDP11',         , 'pdp11'      , 'base')
 call <SID>MapOpcode('gasOpcode_186_Base'       , '186'        , 'base')
 call <SID>MapOpcode('gasOpcode_286_Base'       , '286'        , 'base')
 call <SID>MapOpcode('gasOpcode_3862_Base'      , '3862'       , 'base')
