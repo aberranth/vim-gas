@@ -1,3 +1,4 @@
+" vim: set foldmethod=marker
 " Vim syntax file
 " Language:     GNU as (AT&T) assembler for X86
 " Maintainer:   Rene Koecher <info@bitspin.org>
@@ -5,7 +6,6 @@
 " Version:      0.13
 " Remark:       Intel and AVR compatible instructions only (for now)
 " License:      BSD (3 clause), see LICENSE
-"
 
 if version < 600
         syntax clear
@@ -19,7 +19,7 @@ setlocal isident   +=%,.,-,_
 syn case ignore
 
 " directives
-syn keyword gasDirective        .abort .ABORT .align .balignw .balignl
+syn keyword gasDirective        .abort .ABORT .align .balign .balignw .balignl
 syn keyword gasDirective        .bundle_align_mode .bundle_lock .bundle_unlock .bss
 syn keyword gasDirective        .cfi_startproc .cfi_sections .cfi_endproc .cfi_personality
 syn keyword gasDirective        .cfi_lsda .cfi_def_cfa .cfi_def_cfa_register .cfi_def_cfa_offset
@@ -73,7 +73,7 @@ syn region  gasString           start=/"/  end=/"/ skip=/\\"/
 syn match   gasCharacter        /'\(?\|\\?\)/
 syn match   gasDecimalNumber    /\$\?-\?\d\+/
 syn match   gasBinaryNumber     /\$\?-\?0b[01]\+/
-syn match   gasOctalNumber      /\$\?-\?0\d\+/
+syn match   gasOctalNumber      /\$\?-\?0[0-7]\+/
 syn match   gasHexNumber        /\$\?-\?0x\x\+/
 " -- TODO: gasFloatNumber
 
@@ -119,7 +119,7 @@ syn keyword gasOpcode_PDP11_EIS         mul div ash ashc
 syn keyword gasOpcode_PDP11_FIS         fadd fsub fmul fdiv
 syn keyword gasOpcode_PDP11_HALT        start $run$ step $step$ rsel $mfls$ mfus $mfpm$
 syn keyword gasOpcode_PDP11_HALT        rcps $mfps$ mtus $mtpm$ wcpc $mtpc$ wcpc $mtps$
-"-- Section: Willamette MMX instructions (SSE2 SIMD Integer Instructions)
+"-- Section: Willamette MMX instructions (SSE2 SIMD Integer Instructions) {{{
 syn keyword gasOpcode_SSE2              movd movdb movdw movdl movdq
 syn keyword gasOpcode_SSE2              movdqa
 syn keyword gasOpcode_SSE2              movdqu
@@ -191,8 +191,8 @@ syn keyword gasOpcode_SSE2              punpcklwd punpcklwdb punpcklwdw punpcklw
 syn keyword gasOpcode_SSE2              punpckldq punpckldqb punpckldqw punpckldql punpckldqq
 syn keyword gasOpcode_SSE2              punpcklqdq punpcklqdqb punpcklqdqw punpcklqdql punpcklqdqq
 syn keyword gasOpcode_SSE2              pxor pxorb pxorw pxorl pxorq
-
-"-- Section: Nehalem New Instructions (SSE4.2)
+" }}}
+"-- Section: Nehalem New Instructions (SSE4.2) {{{
 syn keyword gasOpcode_X64_SSE42         crc32
 syn keyword gasOpcode_SSE42             pcmpestri pcmpestrib pcmpestriw pcmpestril pcmpestriq
 syn keyword gasOpcode_SSE42             pcmpestrm pcmpestrmb pcmpestrmw pcmpestrml pcmpestrmq
@@ -200,11 +200,11 @@ syn keyword gasOpcode_SSE42             pcmpistri pcmpistrib pcmpistriw pcmpistr
 syn keyword gasOpcode_SSE42             pcmpistrm pcmpistrmb pcmpistrmw pcmpistrml pcmpistrmq
 syn keyword gasOpcode_SSE42             pcmpgtq pcmpgtqb pcmpgtqw pcmpgtql pcmpgtqq
 syn keyword gasOpcode_NEHALEM_Base      popcnt
-
-"-- Section: Intel new instructions in ???
+"-- }}}
+"-- Section: Intel new instructions in ??? {{{
 syn keyword gasOpcode_NEHALEM_Base      movbe movbeb movbew movbel movbeq
-
-"-- Section: AMD XOP, FMA4 and CVT16 instructions (SSE5)
+"-- }}}
+"-- Section: AMD XOP, FMA4 and CVT16 instructions (SSE5) {{{
 syn keyword gasOpcode_AMD_SSE5          vcvtph2ps vcvtph2psb vcvtph2psw vcvtph2psl vcvtph2psq
 syn keyword gasOpcode_AMD_SSE5          vcvtps2ph vcvtps2phb vcvtps2phw vcvtps2phl vcvtps2phq
 syn keyword gasOpcode_AMD_SSE5          vfmaddpd vfmaddpdb vfmaddpdw vfmaddpdl vfmaddpdq
@@ -280,15 +280,15 @@ syn keyword gasOpcode_AMD_SSE5          vpshlb vpshlbb vpshlbw vpshlbl vpshlbq
 syn keyword gasOpcode_AMD_SSE5          vpshld vpshldb vpshldw vpshldl vpshldq
 syn keyword gasOpcode_AMD_SSE5          vpshlq vpshlqb vpshlqw vpshlql vpshlqq
 syn keyword gasOpcode_AMD_SSE5          vpshlw vpshlwb vpshlww vpshlwl vpshlwq
-
-"-- Section: Generic memory operations
+"-- }}}
+"-- Section: Generic memory operations {{{
 syn keyword gasOpcode_KATMAI_Base       prefetchnta prefetchntab prefetchntaw prefetchntal prefetchntaq
 syn keyword gasOpcode_KATMAI_Base       prefetcht0 prefetcht0b prefetcht0w prefetcht0l prefetcht0q
 syn keyword gasOpcode_KATMAI_Base       prefetcht1 prefetcht1b prefetcht1w prefetcht1l prefetcht1q
 syn keyword gasOpcode_KATMAI_Base       prefetcht2 prefetcht2b prefetcht2w prefetcht2l prefetcht2q
 syn keyword gasOpcode_KATMAI_Base       sfence
-
-"-- Section: Tejas New Instructions (SSSE3)
+"-- }}}
+"-- Section: Tejas New Instructions (SSSE3) {{{
 syn keyword gasOpcode_Base              pabsb pabsbb pabsbw pabsbl pabsbq
 syn keyword gasOpcode_Base              pabsw pabswb pabsww pabswl pabswq
 syn keyword gasOpcode_Base              pabsd pabsdb pabsdw pabsdl pabsdq
@@ -305,8 +305,8 @@ syn keyword gasOpcode_Base              pshufb pshufbb pshufbw pshufbl pshufbq
 syn keyword gasOpcode_Base              psignb psignbb psignbw psignbl psignbq
 syn keyword gasOpcode_Base              psignw psignwb psignww psignwl psignwq
 syn keyword gasOpcode_Base              psignd psigndb psigndw psigndl psigndq
-
-"-- Section: Intel Fused Multiply-Add instructions (FMA)
+"-- }}}
+"-- Section: Intel Fused Multiply-Add instructions (FMA) {{{
 syn keyword gasOpcode_FUTURE_FMA        vfmadd132ps vfmadd132psb vfmadd132psw vfmadd132psl vfmadd132psq
 syn keyword gasOpcode_FUTURE_FMA        vfmadd132pd vfmadd132pdb vfmadd132pdw vfmadd132pdl vfmadd132pdq
 syn keyword gasOpcode_FUTURE_FMA        vfmadd312ps vfmadd312psb vfmadd312psw vfmadd312psl vfmadd312psq
@@ -427,8 +427,8 @@ syn keyword gasOpcode_FUTURE_FMA        vfnmsub231ss vfnmsub231ssb vfnmsub231ssw
 syn keyword gasOpcode_FUTURE_FMA        vfnmsub231sd vfnmsub231sdb vfnmsub231sdw vfnmsub231sdl vfnmsub231sdq
 syn keyword gasOpcode_FUTURE_FMA        vfnmsub321ss vfnmsub321ssb vfnmsub321ssw vfnmsub321ssl vfnmsub321ssq
 syn keyword gasOpcode_FUTURE_FMA        vfnmsub321sd vfnmsub321sdb vfnmsub321sdw vfnmsub321sdl vfnmsub321sdq
-
-"-- Section: Willamette SSE2 Cacheability Instructions
+"-- }}}
+"-- Section: Willamette SSE2 Cacheability Instructions {{{
 syn keyword gasOpcode_SSE2              maskmovdqu
 syn keyword gasOpcode_SSE2              clflush clflushb clflushw clflushl clflushq
 syn keyword gasOpcode_SSE2              movntdq movntdqb movntdqw movntdql movntdqq
@@ -436,8 +436,8 @@ syn keyword gasOpcode_X64_Base          movnti movntib movntiw movntil movntiq
 syn keyword gasOpcode_SSE2              movntpd movntpdb movntpdw movntpdl movntpdq
 syn keyword gasOpcode_SSE2              lfence
 syn keyword gasOpcode_SSE2              mfence
-
-"-- Section: Systematic names for the hinting nop instructions
+"-- }}}
+"-- Section: Systematic names for the hinting nop instructions {{{
 syn keyword gasOpcode_X64_Base          hint_nop0
 syn keyword gasOpcode_X64_Base          hint_nop1
 syn keyword gasOpcode_X64_Base          hint_nop2
@@ -501,18 +501,18 @@ syn keyword gasOpcode_X64_Base          hint_nop59
 syn keyword gasOpcode_X64_Base          hint_nop60
 syn keyword gasOpcode_X64_Base          hint_nop61
 syn keyword gasOpcode_X64_Base          hint_nop62
-
-"-- Section: Geode (Cyrix) 3DNow! additions
+"-- }}}
+"-- Section: Geode (Cyrix) 3DNow! additions {{{
 syn keyword gasOpcode_PENT_3DNOW        pfrcpv pfrcpvb pfrcpvw pfrcpvl pfrcpvq
 syn keyword gasOpcode_PENT_3DNOW        pfrsqrtv pfrsqrtvb pfrsqrtvw pfrsqrtvl pfrsqrtvq
-
-"-- Section: XSAVE group (AVX and extended state)
+"-- }}}
+"-- Section: XSAVE group (AVX and extended state) {{{
 syn keyword gasOpcode_NEHALEM_Base      xgetbv
 syn keyword gasOpcode_NEHALEM_Base      xsetbv
 syn keyword gasOpcode_NEHALEM_Base      xsave xsaveb xsavew xsavel xsaveq
 syn keyword gasOpcode_NEHALEM_Base      xrstor xrstorb xrstorw xrstorl xrstorq
-
-"-- Section: Conventional instructions
+"-- }}}
+"-- Section: Conventional instructions {{{
 syn keyword gasOpcode_8086_Base         aaa
 syn keyword gasOpcode_8086_Base         aad aadb aadw aadl aadq
 syn keyword gasOpcode_8086_Base         aam aamb aamw aaml aamq
@@ -915,8 +915,8 @@ syn keyword gasOpcode_386_Base          xor xorb xorw xorl xorq
 syn keyword gasOpcode_X64_Base          cmovcc
 syn match   gasOpcode_8086_Base         /\<j\(e\|ne\|a\|ae\|b\|be\|nbe\|g\|ge\|ng\|nge\|l\|le\|\|z\|nz\|c\|nc\|d\|nd\|o\|no\|p\|np\|s\|ns\)[bwlq]\?\>/
 syn match   gasOpcode_386_Base          /\<set\(e\|ne\|a\|ae\|b\|be\|nbe\|g\|ge\|ng\|nge\|l\|le\|\|z\|nz\|c\|nc\|d\|nd\|o\|no\|p\|np\|s\|ns\)[bwlq]\?\>/
-
-"-- Section: VIA (Centaur) security instructions
+"-- }}}
+"-- Section: VIA (Centaur) security instructions {{{
 syn keyword gasOpcode_PENT_Base         xstore
 syn keyword gasOpcode_PENT_Base         xcryptecb
 syn keyword gasOpcode_PENT_Base         xcryptcbc
@@ -926,15 +926,15 @@ syn keyword gasOpcode_PENT_Base         xcryptofb
 syn keyword gasOpcode_PENT_Base         montmul
 syn keyword gasOpcode_PENT_Base         xsha1
 syn keyword gasOpcode_PENT_Base         xsha256
-
-"-- Section: Intel AVX Carry-Less Multiplication instructions (CLMUL)
+"-- }}}
+"-- Section: Intel AVX Carry-Less Multiplication instructions (CLMUL) {{{
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vpclmullqlqdq vpclmullqlqdqb vpclmullqlqdqw vpclmullqlqdql vpclmullqlqdqq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vpclmulhqlqdq vpclmulhqlqdqb vpclmulhqlqdqw vpclmulhqlqdql vpclmulhqlqdqq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vpclmullqhqdq vpclmullqhqdqb vpclmullqhqdqw vpclmullqhqdql vpclmullqhqdqq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vpclmulhqhqdq vpclmulhqhqdqb vpclmulhqhqdqw vpclmulhqhqdql vpclmulhqhqdqq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vpclmulqdq vpclmulqdqb vpclmulqdqw vpclmulqdql vpclmulqdqq
-
-"-- Section: AMD SSE5 instructions
+"-- }}}
+"-- Section: AMD SSE5 instructions {{{
 syn keyword gasOpcode_AMD_SSE5          fmaddps fmaddpsb fmaddpsw fmaddpsl fmaddpsq
 syn keyword gasOpcode_AMD_SSE5          fmaddpd fmaddpdb fmaddpdw fmaddpdl fmaddpdq
 syn keyword gasOpcode_AMD_SSE5          fmaddss fmaddssb fmaddssw fmaddssl fmaddssq
@@ -1148,12 +1148,12 @@ syn keyword gasOpcode_AMD_SSE5          roundps roundpsb roundpsw roundpsl round
 syn keyword gasOpcode_AMD_SSE5          roundpd roundpdb roundpdw roundpdl roundpdq
 syn keyword gasOpcode_AMD_SSE5          roundss roundssb roundssw roundssl roundssq
 syn keyword gasOpcode_AMD_SSE5          roundsd roundsdb roundsdw roundsdl roundsdq
-
-"-- Section: Introduced in Deschutes but necessary for SSE support
+"-- }}}
+"-- Section: Introduced in Deschutes but necessary for SSE support {{{
 syn keyword gasOpcode_P6_SSE            fxrstor fxrstorb fxrstorw fxrstorl fxrstorq
 syn keyword gasOpcode_P6_SSE            fxsave fxsaveb fxsavew fxsavel fxsaveq
-
-"-- Section: Prescott New Instructions (SSE3)
+"-- }}}
+"-- Section: Prescott New Instructions (SSE3) {{{
 syn keyword gasOpcode_PRESCOTT_SSE3     addsubpd addsubpdb addsubpdw addsubpdl addsubpdq
 syn keyword gasOpcode_PRESCOTT_SSE3     addsubps addsubpsb addsubpsw addsubpsl addsubpsq
 syn keyword gasOpcode_PRESCOTT_SSE3     haddpd haddpdb haddpdw haddpdl haddpdq
@@ -1164,16 +1164,16 @@ syn keyword gasOpcode_PRESCOTT_SSE3     lddqu lddqub lddquw lddqul lddquq
 syn keyword gasOpcode_PRESCOTT_SSE3     movddup movddupb movddupw movddupl movddupq
 syn keyword gasOpcode_PRESCOTT_SSE3     movshdup movshdupb movshdupw movshdupl movshdupq
 syn keyword gasOpcode_PRESCOTT_SSE3     movsldup movsldupb movsldupw movsldupl movsldupq
-
-"-- Section: Intel AES instructions
+"-- }}}
+"-- Section: Intel AES instructions {{{
 syn keyword gasOpcode_SSE               aesenc aesencb aesencw aesencl aesencq
 syn keyword gasOpcode_SSE               aesenclast aesenclastb aesenclastw aesenclastl aesenclastq
 syn keyword gasOpcode_SSE               aesdec aesdecb aesdecw aesdecl aesdecq
 syn keyword gasOpcode_SSE               aesdeclast aesdeclastb aesdeclastw aesdeclastl aesdeclastq
 syn keyword gasOpcode_SSE               aesimc aesimcb aesimcw aesimcl aesimcq
 syn keyword gasOpcode_SSE               aeskeygenassist aeskeygenassistb aeskeygenassistw aeskeygenassistl aeskeygenassistq
-
-"-- Section: Willamette Streaming SIMD instructions (SSE2)
+"-- }}}
+"-- Section: Willamette Streaming SIMD instructions (SSE2) {{{
 syn keyword gasOpcode_SSE2              addpd addpdb addpdw addpdl addpdq
 syn keyword gasOpcode_SSE2              addsd addsdb addsdw addsdl addsdq
 syn keyword gasOpcode_SSE2              andnpd andnpdb andnpdw andnpdl andnpdq
@@ -1237,15 +1237,15 @@ syn keyword gasOpcode_SSE2              ucomisd ucomisdb ucomisdw ucomisdl ucomi
 syn keyword gasOpcode_SSE2              unpckhpd unpckhpdb unpckhpdw unpckhpdl unpckhpdq
 syn keyword gasOpcode_SSE2              unpcklpd unpcklpdb unpcklpdw unpcklpdl unpcklpdq
 syn keyword gasOpcode_SSE2              xorpd xorpdb xorpdw xorpdl xorpdq
-
-"-- Section: Intel Carry-Less Multiplication instructions (CLMUL)
+"-- }}}
+"-- Section: Intel Carry-Less Multiplication instructions (CLMUL) {{{
 syn keyword gasOpcode_SSE               pclmullqlqdq pclmullqlqdqb pclmullqlqdqw pclmullqlqdql pclmullqlqdqq
 syn keyword gasOpcode_SSE               pclmulhqlqdq pclmulhqlqdqb pclmulhqlqdqw pclmulhqlqdql pclmulhqlqdqq
 syn keyword gasOpcode_SSE               pclmullqhqdq pclmullqhqdqb pclmullqhqdqw pclmullqhqdql pclmullqhqdqq
 syn keyword gasOpcode_SSE               pclmulhqhqdq pclmulhqhqdqb pclmulhqhqdqw pclmulhqhqdql pclmulhqhqdqq
 syn keyword gasOpcode_SSE               pclmulqdq pclmulqdqb pclmulqdqw pclmulqdql pclmulqdqq
-
-"-- Section: New MMX instructions introduced in Katmai
+"-- }}}
+"-- Section: New MMX instructions introduced in Katmai {{{
 syn keyword gasOpcode_KATMAI_MMX        maskmovq
 syn keyword gasOpcode_KATMAI_MMX        movntq movntqb movntqw movntql movntqq
 syn keyword gasOpcode_KATMAI_MMX        pavgb pavgbb pavgbw pavgbl pavgbq
@@ -1260,11 +1260,11 @@ syn keyword gasOpcode_KATMAI_MMX        pmovmskb
 syn keyword gasOpcode_KATMAI_MMX        pmulhuw pmulhuwb pmulhuww pmulhuwl pmulhuwq
 syn keyword gasOpcode_KATMAI_MMX        psadbw psadbwb psadbww psadbwl psadbwq
 syn keyword gasOpcode_KATMAI_MMX2       pshufw pshufwb pshufww pshufwl pshufwq
-
-"-- Section: Intel SMX
+"-- }}}
+"-- Section: Intel SMX {{{
 syn keyword gasOpcode_KATMAI_Base       getsec
-
-"-- Section: Katmai Streaming SIMD instructions (SSE -- a.k.a. KNI, XMM, MMX2)
+"-- }}}
+"-- Section: Katmai Streaming SIMD instructions (SSE -- a.k.a. KNI, XMM, MMX2) {{{
 syn keyword gasOpcode_KATMAI_SSE        addps addpsb addpsw addpsl addpsq
 syn keyword gasOpcode_KATMAI_SSE        addss addssb addssw addssl addssq
 syn keyword gasOpcode_KATMAI_SSE        andnps andnpsb andnpsw andnpsl andnpsq
@@ -1327,12 +1327,12 @@ syn keyword gasOpcode_KATMAI_SSE        ucomiss ucomissb ucomissw ucomissl ucomi
 syn keyword gasOpcode_KATMAI_SSE        unpckhps unpckhpsb unpckhpsw unpckhpsl unpckhpsq
 syn keyword gasOpcode_KATMAI_SSE        unpcklps unpcklpsb unpcklpsw unpcklpsl unpcklpsq
 syn keyword gasOpcode_KATMAI_SSE        xorps xorpsb xorpsw xorpsl xorpsq
-
-"-- Section: Extended Page Tables VMX instructions
+"-- }}}
+"-- Section: Extended Page Tables VMX instructions {{{
 syn keyword gasOpcode_VMX               invept inveptb inveptw inveptl inveptq
 syn keyword gasOpcode_VMX               invvpid invvpidb invvpidw invvpidl invvpidq
-
-"-- Section: VMX Instructions
+"-- }}}
+"-- Section: VMX Instructions {{{
 syn keyword gasOpcode_VMX               vmcall
 syn keyword gasOpcode_VMX               vmclear vmclearb vmclearw vmclearl vmclearq
 syn keyword gasOpcode_VMX               vmlaunch
@@ -1347,19 +1347,19 @@ syn keyword gasOpcode_X64_VMX           vmsave
 syn keyword gasOpcode_X64_VMX           vmwrite
 syn keyword gasOpcode_VMX               vmxoff
 syn keyword gasOpcode_VMX               vmxon vmxonb vmxonw vmxonl vmxonq
-
-"-- Section: Intel AVX AES instructions
+"-- }}}
+"-- Section: Intel AVX AES instructions {{{
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaesenc vaesencb vaesencw vaesencl vaesencq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaesenclast vaesenclastb vaesenclastw vaesenclastl vaesenclastq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaesdec vaesdecb vaesdecw vaesdecl vaesdecq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaesdeclast vaesdeclastb vaesdeclastw vaesdeclastl vaesdeclastq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaesimc vaesimcb vaesimcw vaesimcl vaesimcq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaeskeygenassist vaeskeygenassistb vaeskeygenassistw vaeskeygenassistl vaeskeygenassistq
-
-"-- Section: New instructions in Barcelona
+"-- }}}
+"-- Section: New instructions in Barcelona {{{
 syn keyword gasOpcode_X64_Base          lzcnt
-
-"-- Section: Intel AVX instructions
+"-- }}}
+"-- Section: Intel AVX instructions {{{
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaddpd vaddpdb vaddpdw vaddpdl vaddpdq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaddps vaddpsb vaddpsw vaddpsl vaddpsq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vaddsd vaddsdb vaddsdw vaddsdl vaddsdq
@@ -1760,15 +1760,15 @@ syn keyword gasOpcode_SANDYBRIDGE_AVX   vxorpd vxorpdb vxorpdw vxorpdl vxorpdq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vxorps vxorpsb vxorpsw vxorpsl vxorpsq
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vzeroall
 syn keyword gasOpcode_SANDYBRIDGE_AVX   vzeroupper
-
-"-- Section: AMD Enhanced 3DNow! (Athlon) instructions
+"-- }}}
+"-- Section: AMD Enhanced 3DNow! (Athlon) instructions {{{
 syn keyword gasOpcode_PENT_3DNOW        pf2iw pf2iwb pf2iww pf2iwl pf2iwq
 syn keyword gasOpcode_PENT_3DNOW        pfnacc pfnaccb pfnaccw pfnaccl pfnaccq
 syn keyword gasOpcode_PENT_3DNOW        pfpnacc pfpnaccb pfpnaccw pfpnaccl pfpnaccq
 syn keyword gasOpcode_PENT_3DNOW        pi2fw pi2fwb pi2fww pi2fwl pi2fwq
 syn keyword gasOpcode_PENT_3DNOW        pswapd pswapdb pswapdw pswapdl pswapdq
-
-"-- Section: Penryn New Instructions (SSE4.1)
+"-- }}}
+"-- Section: Penryn New Instructions (SSE4.1) {{{
 syn keyword gasOpcode_SSE41             blendpd blendpdb blendpdw blendpdl blendpdq
 syn keyword gasOpcode_SSE41             blendps blendpsb blendpsw blendpsl blendpsq
 syn keyword gasOpcode_SSE41             blendvpd blendvpdb blendvpdw blendvpdl blendvpdq
@@ -1818,14 +1818,14 @@ syn keyword gasOpcode_SSE41             roundpd roundpdb roundpdw roundpdl round
 syn keyword gasOpcode_SSE41             roundps roundpsb roundpsw roundpsl roundpsq
 syn keyword gasOpcode_SSE41             roundsd roundsdb roundsdw roundsdl roundsdq
 syn keyword gasOpcode_SSE41             roundss roundssb roundssw roundssl roundssq
-
-"-- Section: AMD SSE4A
+"-- }}}
+"-- Section: AMD SSE4A {{{
 syn keyword gasOpcode_AMD_SSE4A         extrq
 syn keyword gasOpcode_AMD_SSE4A         insertq
 syn keyword gasOpcode_AMD_SSE4A         movntsd movntsdb movntsdw movntsdl movntsdq
 syn keyword gasOpcode_AMD_SSE4A         movntss movntssb movntssw movntssl movntssq
-
-"-- Section: ARM Thumb
+"-- }}}
+"-- Section: ARM Thumb {{{
 syn keyword gasOpcode_ARM_THUMB         adc adceq adcne adccs adchs adccc adclo
 syn keyword gasOpcode_ARM_THUMB         adcmi adcpl adcvs adcvc adchi adcls
 syn keyword gasOpcode_ARM_THUMB         adcge adclt adcgt adcle adcal
@@ -1938,8 +1938,8 @@ syn keyword gasOpcode_ARM_THUMB         subge sublt subgt suble subal
 syn keyword gasOpcode_ARM_THUMB         tst tsteq tstne tstcs tsths tstcc tstlo
 syn keyword gasOpcode_ARM_THUMB         tstmi tstpl tstvs tstvc tsthi tstls
 syn keyword gasOpcode_ARM_THUMB         tstge tstlt tstgt tstle tstal
-
-"-- Section: AVR
+"-- }}}
+"-- Section: AVR {{{
 syn keyword gasOpcode_AVR       adc add adiw and andi asr
 syn keyword gasOpcode_AVR       bclr bld brbc brbs brcc brcs break breq brge
 syn keyword gasOpcode_AVR       brhc brhs brid brie brlo brlt brmi brne brpl
@@ -1953,7 +1953,7 @@ syn keyword gasOpcode_AVR       pop push rcall ret reti rjmp rol ror sbc sbci
 syn keyword gasOpcode_AVR       sbi sbic sbis sbiw sbr sbrc sbrs sec seh sei
 syn keyword gasOpcode_AVR       sen ser ses set sev sez sleep spm st std sts
 syn keyword gasOpcode_AVR       sub subi swap tst wdr xch
-
+"-- }}}
 
 " links
 hi def link gasDirectiveX86             gasDirective
