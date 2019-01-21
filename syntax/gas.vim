@@ -117,8 +117,8 @@ syn keyword gasOpcode_PDP11             emt trap iot bpt rti rtt
 syn keyword gasOpcode_PDP11             halt wait reset
 syn keyword gasOpcode_PDP11_EIS         mul div ash ashc
 syn keyword gasOpcode_PDP11_FIS         fadd fsub fmul fdiv
-"syn keyword gasOpcode_PDP11_HALT        start $run$ step $step$ rsel $mfls$ mfus $mfpm$
-"syn keyword gasOpcode_PDP11_HALT        rcps $mfps$ mtus $mtpm$ wcpc $mtpc$ wcpc $mtps$
+syn keyword gasOpcode_PDP11_HALT        $run$ $step$ $mfls$ $mfpm$
+syn keyword gasOpcode_PDP11_HALT        $mfps$ $mtpm$ $mtpc$ $mtps$
 "-- Section: Willamette MMX instructions (SSE2 SIMD Integer Instructions) {{{
 syn keyword gasOpcode_SSE2              movd movdb movdw movdl movdq
 syn keyword gasOpcode_SSE2              movdqa
@@ -2015,7 +2015,7 @@ endf
 call <SID>MapOpcode('gasOpcode_PDP11'          , 'pdp11'      , 'base')
 call <SID>MapOpcode('gasOpcode_PDP11_EIS'      , 'pdp11'      , 'eis')
 call <SID>MapOpcode('gasOpcode_PDP11_FIS'      , 'pdp11'      , 'fis')
-"call <SID>MapOpcode('gasOpcode_PDP11_HALT'     , 'pdp11'      , 'halt')
+call <SID>MapOpcode('gasOpcode_PDP11_HALT'     , 'pdp11'      , 'halt')
 "call <SID>MapOpcode('gasOpcode_186_Base'       , '186'        , 'base')
 "call <SID>MapOpcode('gasOpcode_286_Base'       , '286'        , 'base')
 "call <SID>MapOpcode('gasOpcode_3862_Base'      , '3862'       , 'base')
