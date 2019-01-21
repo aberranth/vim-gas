@@ -92,8 +92,13 @@ endif
 " ARM specific directives
 syn keyword gasDirectiveStoreARM        .2byte .4byte .8byte
 
-syn keyword gasDirectiveARM     .arch .arch_expression .arm .asciiz .cantunwind .code .cpu .dn .qn .eabi_attribute .even .extend .ldouble .fnend .fbstart .force_thumb .fpu .handlerdata .inst .inst.n .inst.w .ltorg .lmovsp .movsp .object_arch .packed .pad .personality .personalityindex .pool .req .save .setfp .secrel32 .syntax .thumb .thumb_func .thumb_set .tlsdescseq .unreq .unwind_raw .vsave
-
+syn keyword gasDirectiveARM .arch .arch_expression .arm .asciiz .cantunwind .code
+syn keyword gasDirectiveARM .cpu .dn .qn .eabi_attribute .even .extend .ldouble
+syn keyword gasDirectiveARM .fnend .fbstart .force_thumb .fpu .handlerdata .inst
+syn keyword gasDirectiveARM .inst.n .inst.w .ltorg .lmovsp .movsp .object_arch
+syn keyword gasDirectiveARM .packed .pad .personality .personalityindex .pool .req
+syn keyword gasDirectiveARM .save .setfp .secrel32 .syntax .thumb .thumb_func
+syn keyword gasDirectiveARM .thumb_set .tlsdescseq .unreq .unwind_raw .vsave
 " ARM register set
 " Must be defined after gasSymbol to have higher precedence
 syn keyword gasRegisterARM              sp lr pc
@@ -103,22 +108,6 @@ syn keyword gasDirectiveMacroARM        .dn .dq .req .unreq .tlsdescseq
 
 " finally: Opcodes
 "
-"-- Section: PDP-11
-syn keyword gasOpcode_PDP11             clr clrb com comb inc incb dec decb neg negb
-syn keyword gasOpcode_PDP11             tst tstb asr asrb asl aslb ror rorb rol rolb
-syn keyword gasOpcode_PDP11             adc adcb sbc sbcb sxt swab mfps mtps
-syn keyword gasOpcode_PDP11             mov movb cmp cmpb add sub
-syn keyword gasOpcode_PDP11             bit bic bis xor
-syn keyword gasOpcode_PDP11             br bne beq bpl bmi bvc bvs bcc bhis bcs blo
-syn keyword gasOpcode_PDP11             bge blt bgt ble bhi blos
-syn keyword gasOpcode_PDP11             jmp jsr call rts return mark sob
-syn keyword gasOpcode_PDP11             nop clc clv clz cln ccc sec sev sez sen scc
-syn keyword gasOpcode_PDP11             emt trap iot bpt rti rtt
-syn keyword gasOpcode_PDP11             halt wait reset
-syn keyword gasOpcode_PDP11_EIS         mul div ash ashc
-syn keyword gasOpcode_PDP11_FIS         fadd fsub fmul fdiv
-syn keyword gasOpcode_PDP11_HALT        $run$ $step$ $mfls$ $mfpm$
-syn keyword gasOpcode_PDP11_HALT        $mfps$ $mtpm$ $mtpc$ $mtps$
 "-- Section: Willamette MMX instructions (SSE2 SIMD Integer Instructions) {{{
 syn keyword gasOpcode_SSE2              movd movdb movdw movdl movdq
 syn keyword gasOpcode_SSE2              movdqa
@@ -1954,6 +1943,22 @@ syn keyword gasOpcode_AVR       sbi sbic sbis sbiw sbr sbrc sbrs sec seh sei
 syn keyword gasOpcode_AVR       sen ser ses set sev sez sleep spm st std sts
 syn keyword gasOpcode_AVR       sub subi swap tst wdr xch
 "-- }}}
+"-- Section: PDP-11
+syn keyword gasOpcode_PDP11         clr clrb com comb inc incb dec decb neg negb
+syn keyword gasOpcode_PDP11         tst tstb asr asrb asl aslb ror rorb rol rolb
+syn keyword gasOpcode_PDP11         adc adcb sbc sbcb sxt swab mfps mtps
+syn keyword gasOpcode_PDP11         mov movb cmp cmpb add sub
+syn keyword gasOpcode_PDP11         bit bic bis xor
+syn keyword gasOpcode_PDP11         br bne beq bpl bmi bvc bvs bcc bhis bcs blo
+syn keyword gasOpcode_PDP11         bge blt bgt ble bhi blos
+syn keyword gasOpcode_PDP11         jmp jsr call rts return mark sob
+syn keyword gasOpcode_PDP11         nop clc clv clz cln ccc sec sev sez sen scc
+syn keyword gasOpcode_PDP11         emt trap iot bpt rti rtt
+syn keyword gasOpcode_PDP11         halt wait reset
+syn keyword gasOpcode_PDP11_EIS     mul div ash ashc
+syn keyword gasOpcode_PDP11_FIS     fadd fsub fmul fdiv
+syn keyword gasOpcode_PDP11_HALT    $run$ $step$ $mfls$ $mfpm$
+syn keyword gasOpcode_PDP11_HALT    $mfps$ $mtpm$ $mtpc$ $mtps$
 
 " links
 hi def link gasDirectiveX86             gasDirective
