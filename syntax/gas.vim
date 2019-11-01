@@ -1948,7 +1948,7 @@ syn keyword gasOpcode_PDP11         clr clrb com comb inc incb dec decb neg negb
 syn keyword gasOpcode_PDP11         tst tstb asr asrb asl aslb ror rorb rol rolb
 syn keyword gasOpcode_PDP11         adc adcb sbc sbcb sxt swab mfps mtps
 syn keyword gasOpcode_PDP11         mov movb cmp cmpb add sub
-syn keyword gasOpcode_PDP11         bit bic bis xor
+syn keyword gasOpcode_PDP11         bit bitb bic bicb bis bisb xor
 syn keyword gasOpcode_PDP11         br bne beq bpl bmi bvc bvs bcc bhis bcs blo
 syn keyword gasOpcode_PDP11         bge blt bgt ble bhi blos
 syn keyword gasOpcode_PDP11         jmp jsr call rts return mark sob
