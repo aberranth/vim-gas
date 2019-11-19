@@ -19,66 +19,67 @@ setlocal isident   +=%,.,-,_
 syn case ignore
 
 " directives
-syn keyword gasDirective        .abort .ABORT .align .balign .balignw .balignl
-syn keyword gasDirective        .bundle_align_mode .bundle_lock .bundle_unlock .bss
-syn keyword gasDirective        .cfi_startproc .cfi_sections .cfi_endproc .cfi_personality
-syn keyword gasDirective        .cfi_lsda .cfi_def_cfa .cfi_def_cfa_register .cfi_def_cfa_offset
-syn keyword gasDirective        .cfi_adjust_cfa_offset .cfi_offset .cfi_rel_offset .cfi_register
-syn keyword gasDirective        .cfi_restore .cfi_undefined .cfi_same_value .cfi_remember_state
-syn keyword gasDirective        .cfi_return_column .cfi_signal_frame .cfi_window_save .cfi_escape
-syn keyword gasDirective        .cfi_val_encoded_addr .data .def .desc .dim .eject
-syn keyword gasDirective        .else .elseif .endef .endif .endr .equ .equiv .eqv .err
-syn keyword gasDirective        .error .exitm .extern .fail .file .fill .global .globl
-syn keyword gasDirective        .gnu_attribute .hidden .ident .if .incbin .include .internal
-syn keyword gasDirective        .irp .irpc .lcomm .lflags .line .linkonce .list .ln .loc .loc_mark_labels
-syn keyword gasDirective        .local .mri .nolist .org .p2alignw .p2alignl
-syn keyword gasDirective        .popsection .previous .print .protected .psize .purgem .pushsection
-syn keyword gasDirective        .reloc .rept .sbttl .scl .section .set .single .size .skip .sleb128
-syn keyword gasDirective        .stabd .stabn .stabs .struct .subsection
-syn keyword gasDirective        .symver .tag .text .title .type .uleb128 .val .version
-syn keyword gasDirective        .vtable_entry .vtable_inherit .warning .weak .weakref
+syn keyword gasDirective  .abort .ABORT .align .balign .balignw .balignl
+syn keyword gasDirective  .bundle_align_mode .bundle_lock .bundle_unlock .bss
+syn keyword gasDirective  .cfi_startproc .cfi_sections .cfi_endproc .cfi_personality
+syn keyword gasDirective  .cfi_lsda .cfi_def_cfa .cfi_def_cfa_register .cfi_def_cfa_offset
+syn keyword gasDirective  .cfi_adjust_cfa_offset .cfi_offset .cfi_rel_offset .cfi_register
+syn keyword gasDirective  .cfi_restore .cfi_undefined .cfi_same_value .cfi_remember_state
+syn keyword gasDirective  .cfi_return_column .cfi_signal_frame .cfi_window_save .cfi_escape
+syn keyword gasDirective  .cfi_val_encoded_addr .data .def .desc .dim .eject
+syn keyword gasDirective  .if .ifdef .ifb .ifc .ifeq .ifeqs .ifge .ifgt .ifle
+syn keyword gasDirective  .iflt .ifnb .ifnc .ifndef .ifnotdef .ifne .ifnes
+syn keyword gasDirective  .else .elseif .endef .endif .endr .equ .equiv .eqv .err
+syn keyword gasDirective  .error .exitm .extern .fail .file .fill .global .globl
+syn keyword gasDirective  .gnu_attribute .hidden .ident .incbin .include .internal
+syn keyword gasDirective  .irp .irpc .lcomm .lflags .line .linkonce .list .ln .loc .loc_mark_labels
+syn keyword gasDirective  .local .mri .nolist .org .p2alignw .p2alignl
+syn keyword gasDirective  .popsection .previous .print .protected .psize .purgem .pushsection
+syn keyword gasDirective  .reloc .rept .sbttl .scl .section .set .single .size .skip .sleb128
+syn keyword gasDirective  .stabd .stabn .stabs .struct .subsection
+syn keyword gasDirective  .symver .tag .text .title .type .uleb128 .val .version
+syn keyword gasDirective  .vtable_entry .vtable_inherit .warning .weak .weakref
 
+syn keyword gasDirectiveStore  .byte .hword .word .int .long .double .short .float .quad .octa
+syn keyword gasDirectiveStore  .string .string8 .string16 .ascii .asciz .comm .space .zero
 
-syn keyword gasDirectiveStore   .byte .hword .word .int .long .double .short .float .quad .octa
-syn keyword gasDirectiveStore   .string .string8 .string16 .ascii .asciz .comm .space .zero
-
-syn keyword gasDirectiveMacro   .altmacro .macro .noaltmacro .endm .endmacro .func .endfunc
+syn keyword gasDirectiveMacro  .altmacro .macro .noaltmacro .endm .endmacro .func .endfunc
 
 " i*86 directives
-syn keyword gasDirectiveX86     .att_syntax .intel_syntax .att_mnemonic .intel_mnemonic .code16 .code32 .code64 .lcomm
+syn keyword gasDirectiveX86  .att_syntax .intel_syntax .att_mnemonic .intel_mnemonic .code16 .code32 .code64 .lcomm
 
 " i*86 register set
-syn keyword gasRegisterX86      %rax %rbx %rcx %rdx %rdi %rsi %rsp %rbp
-syn keyword gasRegisterX86      %eax %ebx %ecx %edx %ax %bx %cx %dx %ah %al %bh %bl %ch %cl %dh %dl
-syn keyword gasRegisterX86      %edi %esi %esp %ebp %di %si %sp %bp %sph %spl %bph %bpl
-syn keyword gasRegisterX86      %cs %ds %es %fs %gs %ss %ip %eip %rip %eflags
-syn match   gasRegisterX86      /\<%r\([8-9]\|1[0-5]\)[lwd]\?\>/
+syn keyword gasRegisterX86   %rax %rbx %rcx %rdx %rdi %rsi %rsp %rbp
+syn keyword gasRegisterX86   %eax %ebx %ecx %edx %ax %bx %cx %dx %ah %al %bh %bl %ch %cl %dh %dl
+syn keyword gasRegisterX86   %edi %esi %esp %ebp %di %si %sp %bp %sph %spl %bph %bpl
+syn keyword gasRegisterX86   %cs %ds %es %fs %gs %ss %ip %eip %rip %eflags
+syn match   gasRegisterX86   /\<%r\([8-9]\|1[0-5]\)[lwd]\?\>/
 
 " i*86 special registers
-syn match gasRegisterX86Cr      /\<%cr[0-8]\>/
-syn match gasRegisterX86Dr      /\<%dr[0-8]\>/
-syn match gasRegisterX86Tr      /\<%tr[0-8]\>/
-syn match gasRegisterX86Fp      /\<%sp\(([0-7])\)\?\>/
-syn match gasRegisterX86MMX     /\<%x\?mm[0-7]\>/
+syn match gasRegisterX86Cr   /\<%cr[0-8]\>/
+syn match gasRegisterX86Dr   /\<%dr[0-8]\>/
+syn match gasRegisterX86Tr   /\<%tr[0-8]\>/
+syn match gasRegisterX86Fp   /\<%sp\(([0-7])\)\?\>/
+syn match gasRegisterX86MMX  /\<%x\?mm[0-7]\>/
 
 " symbols and labels
 
-syn match   gasLabel            /[-_$.A-Za-z0-9]\+\s*:/
-syn match   gasSymbol           /\<[^; \t()]\+\>/
-syn match   gasSymbolRef        /\$[-_$.A-Za-z][-_$.A-Za-z0-9]*\>/
-syn match   gasSpecial          /\<[$.]\>/
+syn match   gasLabel      /[-_$.A-Za-z0-9]\+\s*:/
+syn match   gasSymbol     /\<[^; \t()]\+\>/
+syn match   gasSymbolRef  /\$[-_$.A-Za-z][-_$.A-Za-z0-9]*\>/
+syn match   gasSpecial    /\<[$.]\>/
 
 " constants
-syn region  gasString           start=/"/  end=/"/ skip=/\\"/
-syn match   gasCharacter        /'\(?\|\\?\)/
-syn match   gasDecimalNumber    /\$\?-\?\d\+/
-syn match   gasBinaryNumber     /\$\?-\?0b[01]\+/
-syn match   gasOctalNumber      /\$\?-\?0[0-7]\+/
-syn match   gasHexNumber        /\$\?-\?0x\x\+/
+syn region  gasString         start=/"/  end=/"/ skip=/\\"/
+syn match   gasCharacter      /'\(?\|\\?\)/
+syn match   gasDecimalNumber  /\$\?-\?\d\+/
+syn match   gasBinaryNumber   /\$\?-\?0b[01]\+/
+syn match   gasOctalNumber    /\$\?-\?0[0-7]\+/
+syn match   gasHexNumber      /\$\?-\?0x\x\+/
 " -- TODO: gasFloatNumber
 
 " local label needs to be matched *after* numerics
-syn match   gasLocalLabel       /\d\{1,2\}[:fb]/
+syn match   gasLocalLabel  /\d\{1,2\}[:fb]/
 
 " comments etc.
 syn match   gasOperator         /[+-/*=|&~<>]\|<=\|>=\|<>/
